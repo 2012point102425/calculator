@@ -9,28 +9,62 @@ class CalculatorHomePage extends StatefulWidget {
 }
 
 class _CalculatorHomePageState extends State<CalculatorHomePage> {
+  final String _str='o';
+  add(String a)  {
+
+  }
+deleteAll() {
+return "";
+}
+deleteOne() {
+
+}
+getResult() {
+
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
     title: const Text('something'),
     ),
+  
+  
     body: Column(
 crossAxisAlignment: CrossAxisAlignment.stretch,
 children: <Widget>[
 Card(
 color: Colors.lightGreen[50],
-child: const Padding(
-padding: EdgeInsets.all(15.0),
+child: Padding(
+padding: const EdgeInsets.all(15.0),
 child: Text(
-'placeholder',
+_str,
 textScaleFactor: 2.0,
 ),
 ),
 ),
- const Row(
+Row(
 crossAxisAlignment: CrossAxisAlignment.stretch,
 children: <Widget>[
+  ElevatedButton(
+
+style: const TextStyle(color: Colors.white),
+
+onPressed: (){deleteAll();},
+
+child: const Text(
+'C',
+),
+  ),
+ElevatedButton(
+child: const Text(
+'<-',
+style: TextStyle(color: Colors.white)
+),
+onPressed: (){deleteOne();},
+
+
+),
 ],
 ),
 const Row(
@@ -70,7 +104,8 @@ children: <Widget>[
 ],
 ),
 ],
-    )
+),
     );
+    
   }
 }
