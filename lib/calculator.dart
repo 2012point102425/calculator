@@ -3,10 +3,11 @@ import 'package:calculator_app/buttons.dart';
 import 'package:math_expressions/math_expressions.dart';
 class CalculatorView extends StatefulWidget {
   const CalculatorView({Key? key}) : super(key: key);
-
+// stateful widget
   @override
   State<CalculatorView> createState() => _CalculatorViewState();
 }
+// variables
 String equation = "0";
   String result = "0";
   String expression = "";
@@ -18,10 +19,12 @@ class _CalculatorViewState extends State<CalculatorView> {
   buttonPressed(String buttonText) {
     // used to check if the result contains a decimal
     String doesContainDecimal(dynamic result) {
+      // checks for decimal
       if (result.toString().contains('.')) {
         List<String> splitDecimal = result.toString().split('.');
         if (!(int.parse(splitDecimal[1]) > 0)) {
           return result = splitDecimal[0].toString();
+        //
         }
       }
       return result;
@@ -47,7 +50,7 @@ class _CalculatorViewState extends State<CalculatorView> {
         expression = expression.replaceAll('×', '*');
         expression = expression.replaceAll('÷', '/');
         expression = expression.replaceAll('%', '%');
-
+// replaces expressions
         try {
           Parser p = Parser();
           Expression exp = p.parse(expression);
