@@ -22,6 +22,7 @@ class _CalculatorViewState extends State<CalculatorView> {
       // checks for decimal
       if (result.toString().contains('.')) {
         List<String> splitDecimal = result.toString().split('.');
+        // finds decimal in expression and keeps it seperated
         if (!(int.parse(splitDecimal[1]) > 0)) {
           return result = splitDecimal[0].toString();
         //
@@ -31,11 +32,12 @@ class _CalculatorViewState extends State<CalculatorView> {
     }
 
     setState(() {
-      if (buttonText == "C") {
+      if (buttonText == "AC") {
         equation = "0";
         result = "0";
       } else if (buttonText == "⌫") {
         equation = equation.substring(0, equation.length - 1);
+        // The substring of this string from start, inclusive, to end, exclusive
         if (equation == "") {
           equation = "0";
         }
@@ -49,10 +51,11 @@ class _CalculatorViewState extends State<CalculatorView> {
         expression = equation;
         expression = expression.replaceAll('×', '*');
         expression = expression.replaceAll('÷', '/');
-        expression = expression.replaceAll('%', '%');
+        
 // replaces expressions
         try {
           Parser p = Parser();
+          // converts string to int
           Expression exp = p.parse(expression);
 
           ContextModel cm = ContextModel();
@@ -97,6 +100,7 @@ class _CalculatorViewState extends State<CalculatorView> {
         alignment: Alignment.bottomRight,
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          // allows you to scroll horizontally
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -123,13 +127,10 @@ class _CalculatorViewState extends State<CalculatorView> {
                           color: Colors.white38,
                         )),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.backspace_outlined,
-                        color: Colors.lightBlue, size: 30),
-                    onPressed: () {
-                      buttonPressed("⌫");
-                    },
-                  ),
+                  
+                      // display for delete 1 button
+                    
+                  
                   const SizedBox(width: 20),
                 ],
               )
@@ -141,9 +142,10 @@ class _CalculatorViewState extends State<CalculatorView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   calcButton('AC', Colors.white10, () => buttonPressed('AC')),
-                  calcButton('%', Colors.white10, () => buttonPressed('%')),
+                  calcButton('⌫', Colors.white10, () => buttonPressed('⌫')),
                   calcButton('÷', Colors.white10, () => buttonPressed('÷')),
                   calcButton("×", Colors.white10, () => buttonPressed('×')),
+                  // matches buttons to functions
                 ],
               ),
               const SizedBox(height: 10),
@@ -155,6 +157,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                   calcButton('8', Colors.white24, () => buttonPressed('8')),
                   calcButton('9', Colors.white24, () => buttonPressed('9')),
                   calcButton('-', Colors.white10, () => buttonPressed('-')),
+                  // matches buttons to functions
                 ],
               ),
               const SizedBox(height: 10),
@@ -166,6 +169,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                   calcButton('5', Colors.white24, () => buttonPressed('5')),
                   calcButton('6', Colors.white24, () => buttonPressed('6')),
                   calcButton('+', Colors.white10, () => buttonPressed('+')),
+                  // matches buttons to functions
                 ],
               ),
               const SizedBox(height: 10),
@@ -175,7 +179,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceAround
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         children: [
@@ -189,6 +193,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                               width: MediaQuery.of(context).size.width * 0.04),
                           calcButton(
                               '3', Colors.white24, () => buttonPressed('3')),
+                              // displays what is pressed
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -209,7 +214,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                       ),
                     ],
                   ),
-                  calcButton('=', Colors.grey, () =>                         buttonPressed('=')),
+                  calcButton('=', Colors.grey, () => buttonPressed('=')),
                 ],
               )
     ],
